@@ -1,24 +1,38 @@
 import { FC } from "react";
+import { country } from "../countriesList/countriesList.api";
 
-const CountryCard: FC<{ country: {} }> = ({ country }) => {
+const CountryCard: FC<{ country: country }> = ({ country }) => {
+  const {
+    name: { common, official },
+    capital,
+    region,
+    population,
+    flags: { png },
+  } = country;
   return (
     <div>
-      <img src="#" alt="flag" />
+      <img src={png} alt={`${name} flag`} />
       <div>
-        <p>country</p>
+        <p>{official}</p>
         <ul>
           <li>
             <p>
-              <span>population:</span>
-              81.770.900
+              <span>population: </span>
+              {population}
             </p>
             <p>
-              <span>population:</span>
-              81.770.900
+              <span>region: </span>
+              {region}
             </p>
             <p>
-              <span>population:</span>
-              81.770.900
+              <span>{capital?.length === 1 ? "capital: " : "capitals: "}</span>
+              {capital?.map((cap, idx) =>
+                idx === capital.length - 1 ? (
+                  <span key={cap}>{cap}</span>
+                ) : (
+                  <span key={cap}>{cap},</span>
+                )
+              )}
             </p>
           </li>
         </ul>
