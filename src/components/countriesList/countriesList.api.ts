@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { z } from "zod";
-
-const countriesURL = "https://restcountries.com/v3.1/all";
+import { getAllCountries } from "../restCountries.api";
 
 const countryVerifier = z.object({
   name: z.object({
@@ -22,7 +21,7 @@ export type country = z.infer<typeof countryVerifier>
 const countriesVerifier = z.array(countryVerifier);
 
 const getCountries = async () => {
-  const countries = await (await fetch(countriesURL)).json();
+  const countries = await (await getAllCountries()).data
   return countriesVerifier.parse(countries.filter((_: any, idx: number) => idx < 10));
 };
 
