@@ -1,5 +1,15 @@
+import CountriesList from "./components/countriesList/countriesList";
+import Filter from "./components/filters/filter.component";
+
 function App() {
-  return <div>adfasd</div>;
+  return (
+    <main>
+      <div>
+        <Filter />
+        <CountriesList />
+      </div>
+    </main>
+  );
 }
 
 export default App;
