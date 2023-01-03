@@ -1,11 +1,14 @@
-import CountriesList from "./components/countriesList/countriesList";
+import Countries from "./components/countries/countries.component";
+import CountriesByRegion from "./components/countriesByRegion/countriesByRegion.component";
 import Filter from "./components/filters/filter.component";
+import { useFiltersStore } from "./store/filters.store";
 
 function App() {
+  const region = useFiltersStore((state) => state.region);
   return (
     <main>
       <Filter />
-      <CountriesList />
+      {region ? <CountriesByRegion region={region} /> : <Countries />}
     </main>
   );
 }
