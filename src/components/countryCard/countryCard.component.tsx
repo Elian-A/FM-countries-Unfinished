@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { country } from "../countriesList/countriesList.api";
+import { country } from "../countries.query";
 
 const CountryCard: FC<{ country: country }> = ({ country }) => {
   const {

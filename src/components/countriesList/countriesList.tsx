@@ -1,5 +1,5 @@
 import CountryCard from "../countryCard/countryCard.component";
-import { useGetCountries } from "./countriesList.api";
+import { useGetCountries } from "../countries.query";
 
 const CountriesList = () => {
   const { data: countries, isLoading, error } = useGetCountries();
