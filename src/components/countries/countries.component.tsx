@@ -1,7 +1,7 @@
 import CountryCard from "../countryCard/countryCard.component";
 import { useGetCountries } from "../countries.query";
 
-const CountriesList = () => {
+const Countries = () => {
   const { data: countries, isLoading, error } = useGetCountries();
 
   if (isLoading || !countries) return <p>loading</p>;
@@ -16,4 +16,4 @@ const CountriesList = () => {
   );
 };
 
-export default CountriesList;
+export default Countries;
