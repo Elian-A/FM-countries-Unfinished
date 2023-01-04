@@ -13,7 +13,7 @@ const Countries = () => {
   const filteredCountries = filterCountries(filter, countries);
 
   return (
-    <div>
+    <div className="grid justify-center gap-10">
       {filter
         ? filteredCountries.map((country) => (
             <CountryCard key={country.name.official} country={country} />
