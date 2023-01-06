@@ -3,6 +3,7 @@ import { z } from "zod";
 import {
   getAllCountries,
   getCountriesByRegion,
+  getCountry,
 } from "../api/restCountries.api";
 
 const countryVerifier = z.object({
@@ -37,6 +38,11 @@ const getParsedCountriesByRegion = async (region: string) => {
   );
 };
 
+const getParsedCountry = async (countryName: string) => {
+  const [country] = await (await getCountry(countryName)).data;
+  return countryVerifier.parse(country);
+};
+
 const queryOpt = {
   refetchOnReconnect: false,
   refetchOnWindowFocus: false,
@@ -50,3 +56,6 @@ export const useGetCountriesByRegion = (region: string) =>
     ...queryOpt,
     enabled: !!region,
   });
+
+export const useGetCountry = (country: string) =>
+  useQuery(["country", country], () => getParsedCountry(country), queryOpt);
