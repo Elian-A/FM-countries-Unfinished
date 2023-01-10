@@ -10,14 +10,36 @@ const countryVerifier = z.object({
   name: z.object({
     common: z.string(),
     official: z.string(),
+    nativeName: z
+      .object({})
+      .catchall(
+        z.object({
+          official: z.string(),
+          common: z.string(),
+        })
+      )
+      .optional(),
   }),
   capital: z.string().array().optional(),
   region: z.string(),
+  subregion: z.string().optional(),
   population: z.number(),
   flags: z.object({
     png: z.string(),
     svg: z.string(),
   }),
+  languages: z.object({}).catchall(z.string()).optional(),
+  tld: z.string().array().optional(),
+  currencies: z
+    .object({})
+    .catchall(
+      z.object({
+        name: z.string(),
+        symbol: z.string(),
+      })
+    )
+    .optional(),
+  borders: z.string().array().optional(),
 });
 
 export type country = z.infer<typeof countryVerifier>;
@@ -27,7 +49,8 @@ const countriesVerifier = z.array(countryVerifier);
 const getParsedCountries = async () => {
   const countries = await (await getAllCountries()).data;
   return countriesVerifier.parse(
-    countries.filter((_: any, idx: number) => idx < 10)
+    countries
+    // countries.filter((_: any, idx: number) => idx < 10)
   );
 };
 
