@@ -35,7 +35,7 @@ const countryVerifier = z.object({
     .catchall(
       z.object({
         name: z.string(),
-        symbol: z.string(),
+        symbol: z.string().optional(),
       })
     )
     .optional(),
@@ -48,6 +48,7 @@ const countriesVerifier = z.array(countryVerifier);
 
 const getParsedCountries = async () => {
   const countries = await (await getAllCountries()).data;
+  console.log(countries);
   return countriesVerifier.parse(
     countries
     // countries.filter((_: any, idx: number) => idx < 10)
