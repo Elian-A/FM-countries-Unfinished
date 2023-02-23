@@ -47,7 +47,7 @@ export type country = z.infer<typeof countryVerifier>;
 const countriesVerifier = z.array(countryVerifier);
 
 const getParsedCountries = async () => {
-  const countries = await (await getAllCountries()).data;
+  const countries = (await getAllCountries()).data;
   console.log(countries);
   return countriesVerifier.parse(
     countries
@@ -56,14 +56,14 @@ const getParsedCountries = async () => {
 };
 
 const getParsedCountriesByRegion = async (region: string) => {
-  const countries = await (await getCountriesByRegion(region)).data;
+  const countries = (await getCountriesByRegion(region)).data;
   return countriesVerifier.parse(
     countries.filter((_: any, idx: number) => idx < 11)
   );
 };
 
 const getParsedCountry = async (countryName: string) => {
-  const [country] = await (await getCountry(countryName)).data;
+  const [country] = (await getCountry(countryName)).data;
   return countryVerifier.parse(country);
 };
 
