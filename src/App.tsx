@@ -7,14 +7,10 @@ import CountryError from "./components/countryError/countryError";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <p>Nothing here right now</p>,
-  },
-  {
-    path: "/countries",
     element: <Index />,
   },
   {
-    path: "/countries/:country",
+    path: "/:country",
     element: <Country />,
     errorElement: <CountryError />,
   },
