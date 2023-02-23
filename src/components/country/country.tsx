@@ -1,12 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Back from "../SVGs/back";
 import { useGetCountry } from "../countries.query";
-import { object } from "zod";
 
 const Country = () => {
   const { country } = useParams();
   const navigate = useNavigate();
-  if (!country) navigate("/countries");
+  if (!country) navigate("/");
 
   const {
     data: countryData,

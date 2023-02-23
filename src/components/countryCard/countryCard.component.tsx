@@ -12,7 +12,7 @@ const CountryCard: FC<{ country: country }> = ({ country }) => {
   } = country;
   return (
     <div className="max-w-[20rem] rounded-lg bg-white cursor-pointer">
-      <Link to={`/countries/${common}`}>
+      <Link to={`/${common}`}>
         <div className="h-[10rem] shadow-sm">
           <img
             src={png}
